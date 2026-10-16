@@ -13,7 +13,7 @@ def pca_projection(X: list, k: int) -> list:
     eigenvalues = eigenvalues[idx]
     eigenvectors = eigenvectors[:, idx]  
 
-    W = eigenvectors[:, :k]
+    W = eigenvectors
     X_proj = X_c @ W
-    return X_proj
+    return X_proj[:, :k]
     
