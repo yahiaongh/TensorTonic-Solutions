@@ -15,7 +15,5 @@ def rmsprop_step(
     g = np.array(g)
     w = np.array(w)
     new_s = beta * s + (1 - beta) * g * g
-    t = new_s + eps
-    t = np.sqrt(new_s)
-    new_w = w - lr / t * g
+    new_w = w - lr / np.sqrt(new_s + eps) * g
     return (new_w, new_s)
