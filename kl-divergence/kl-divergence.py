@@ -6,8 +6,5 @@ def kl_divergence(p: list, q: list, eps: float = 1e-12) -> float:
     """
     p, q = np.array(p), np.array(q)
     frac = p / np.where(q > eps, q, eps)
-    print(frac)
-    print(p)
-    print(p * frac)
     dkl = np.sum(p * np.log(np.where(frac>eps,frac,eps)))
     return float(dkl)
