@@ -10,22 +10,8 @@ def gini_impurity(y_left: list, y_right: list) -> float:
     if NL + NR == 0:
         return 0.0
     N = NL + NR 
-    uniq = np.unique(y_left)
-    _uniq = np.unique(y_right)
-    gsl = 0.0
-    for c in uniq:
-        cpt = 0
-        for y in y_left:
-            if c == y:
-                cpt += 1
-        gsl += (cpt / NL)**2
-    gsl = 1 - gsl
-    gsr = 0.0
-    for c in _uniq:
-        cpt = 0
-        for y in y_right:
-            if c == y:
-                cpt += 1
-        gsr += (cpt / NR)**2
-    gsr = 1 - gsr
+    uniq = np.unique_counts(y_left)
+    _uniq = np.unique_counts(y_right)
+    gsl = 1 - np.sum((uniq.counts / NL)**2)
+    gsr = 1 - np.sum((_uniq.counts / NR)**2)
     return NL / N * gsl + NR / N * gsr
