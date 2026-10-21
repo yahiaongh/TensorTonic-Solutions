@@ -9,10 +9,7 @@ def dropout(
     Returns (output, dropout_pattern) as NumPy arrays matching the shape of x.
     """
     x = np.array(x, dtype=float)
-    if rng:
-        r = rng.random(x.shape)
-    else:
-        r = np.random.random(x.shape)
+    r = rng.random(x.shape) if rng else np.random.random(x.shape)
     dp = np.zeros(x.shape)
     x[p <= r] = x[p <= r] * 1 / (1 - p)
     x[p > r] = 0.0
