@@ -6,4 +6,4 @@ def linear_regression_closed_form(X: list, y: list) -> list:
     """
     X = np.array(X)
     y = np.array(y)
-    return np.linalg.inv(X.T @ X) @ X.T @ y
+    return (np.linalg.inv(X.T @ X) @ X.T @ y).tolist()
