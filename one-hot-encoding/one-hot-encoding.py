@@ -4,9 +4,11 @@ def one_hot(y: list, num_classes=None) -> np.ndarray:
     """
     Returns a NumPy array with shape (N, K).
     """
-    K = num_classes or np.max(y) + 1
-    N = len(y)
-    R = np.zeros((N, K), dtype=float)
+    y = np.array(y)
+    K = num_classes if num_classes else np.max(y) + 1
+    N = y.size
+    r = np.zeros((N, K))
     for i in range(N):
-        R[i][y[i]] = 1.0
-    return R
+        for j in range(K):
+            r[i][j] = 1 if j == y[i] else 0
+    return r
